@@ -1,0 +1,32 @@
+
+<div class="content row justify-content-center">
+<div class="text-center">
+  <form class="form-login" #login="ngForm" (ngSubmit) = "onSubmit(login)">
+    <img class="mb-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-4 font-weight-normal">Please sign in</h1>
+
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" name="inputEmail" class="form-control" placeholder="Email address"
+    required autofocus email [(ngModel)]="usuario.email" #email="ngModel">
+    <p *ngIf="!email.valid" [ngClass]="{'text-danger':!email.valid}">
+      Email com formato inválido</p>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="inputPassword" class="form-control" placeholder="Password"
+    required [(ngModel)]="usuario.password" #senha="ngModel">
+    <p *ngIf="(!senha.valid)&&(senha.touched)" [ngClass]="{'text-danger':(!senha.valid)&&(senha.touched)}">
+      Senha deve conter pelo menos 1 caracter</p>
+
+
+    <div class="checkbox mb-4">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!login.valid">Sign in</button>
+  </form>
+</div>
+</div>
+
+<app-form-valid ></app-form-valid>

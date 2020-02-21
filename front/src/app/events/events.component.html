@@ -1,0 +1,30 @@
+<h1>Eventos:</h1>
+
+<div *ngIf=" todo$ | async as todos; else loading">
+  <ul *ngFor="let todo of todos">
+    <li>{{ todo.id }}</li>
+    <li>{{ todo.nome }}</li>
+    <li>{{ todo.author }}</li>
+    <li>{{ todo.horaInicio }}</li>
+    <li>{{ todo.horaFim }}</li>
+    <li>{{ todo.dataInicio }}</li>
+    <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="['/events/edit', todo.id]">
+      Atualizar
+    </button>
+    <button class="btn btn-outline-danger mb-1 btn-sm">
+      Deletar
+    </button>
+  </ul>
+</div>
+<ng-template #loading>
+  <div *ngIf="error$ | async; else loadingNotError">
+      Erro ao carregar Todos, tente denovo.
+  </div>
+
+  <ng-template #loadingNotError>
+    <span>
+      Carregando todos
+    </span>
+  </ng-template>
+
+</ng-template>

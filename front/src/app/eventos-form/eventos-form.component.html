@@ -1,0 +1,65 @@
+<div class="card">
+  <article class="">
+    <h3>Evento: </h3>
+    <div >
+      <form class="needs-validation form-group" [formGroup] = "form" novalidate style= "padding-top: 10 px; paddig">
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="Nome">Nome do evento</label>
+            <input
+                  formControlName="nome"
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  placeholder="Nome do evento"
+                  [ngClass]="{ 'is-invalid': submitted && form.get('nome').errors }"
+              />
+              <div class="invalid-feedback" *ngIf="form.get('nome').errors">
+                nome inválido
+              </div>
+              <label for="hora de início">Hora de início</label>
+              <input
+                  formControlName="horaInicio"
+                  type="time"
+                  class="form-control"
+                  id="horaInicio"
+                  placeholder="data"
+                  [ngClass]="{ 'is-invalid': submitted && form.get('nome').errors }"
+              />
+              <div class="invalid-feedback" *ngIf="form.get('nome').errors">
+                hora inválida
+              </div>
+              <label for="hora de fim">Hora de início</label>
+              <input
+                  formControlName="horaFim"
+                  type="time"
+                  class="form-control"
+                  id="horaFim"
+                  placeholder="data"
+                  [ngClass]="{ 'is-invalid': submitted && form.get('nome').errors }"
+              />
+              <div class="invalid-feedback" *ngIf="form.get('nome').errors">
+                hora inválida
+              </div>
+              <label for="Dia do evento:">Dia do evento</label>
+              <input
+                  formControlName="dataInicio"
+                  type="date"
+                  class="form-control"
+                  id="nome"
+                  placeholder="Nome do evento"
+                  [ngClass]="{ 'is-invalid': submitted && form.get('nome').errors }"
+              />
+              <div class="invalid-feedback" *ngIf="form.get('nome').errors">
+                dia inválido
+              </div>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" (click) ="onSubmit()">Salvar</button>
+      </form>
+    </div>
+  </article>
+</div>
