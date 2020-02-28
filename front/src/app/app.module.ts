@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventosFormComponent } from './eventos-form/eventos-form.component';
 import { EventsRoutingModule } from './events/events-routing.module';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { EventsRoutingModule } from './events/events-routing.module';
     SharedModule
   ],
   providers: [
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

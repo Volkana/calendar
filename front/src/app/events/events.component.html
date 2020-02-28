@@ -1,21 +1,42 @@
 <h1>Eventos:</h1>
 
+<button class="btn btn-primary mb-1 btn-sm" [routerLink]="['/novo']">
+  Criar Novo evento
+</button>
+
 <div *ngIf=" todo$ | async as todos; else loading">
-  <ul *ngFor="let todo of todos">
-    <li>{{ todo.id }}</li>
-    <li>{{ todo.nome }}</li>
-    <li>{{ todo.author }}</li>
-    <li>{{ todo.horaInicio }}</li>
-    <li>{{ todo.horaFim }}</li>
-    <li>{{ todo.dataInicio }}</li>
-    <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="['/events/edit', todo.id]">
-      Atualizar
-    </button>
-    <button class="btn btn-outline-danger mb-1 btn-sm">
-      Deletar
-    </button>
-  </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">nome</th>
+        <th scope="col">author</th>
+        <th scope="col">horaInicio</th>
+        <th scope="col">horaFim</th>
+        <th scope="col">dataInicio</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let todo of todos">
+      <tr>
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.nome }}</td>
+        <td>{{ todo.author }}</td>
+        <td>{{ todo.horaInicio }}</td>
+        <td>{{ todo.horaFim }}</td>
+        <td>{{ todo.dataInicio }}</td>
+        <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="['/events/edit', todo.id]">
+          Atualizar
+        </button>
+        <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete(todo)">
+          Deletar
+        </button>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+
 <ng-template #loading>
   <div *ngIf="error$ | async; else loadingNotError">
       Erro ao carregar Todos, tente denovo.
@@ -26,5 +47,12 @@
       Carregando todos
     </span>
   </ng-template>
+</ng-template>
 
+<ng-template #deleteModel>
+  <div class="modal-body text-center">
+    <p>Você deseja excluir o evento {{ todo.name }} ?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="onDecline()">No</button>
+  </div>
 </ng-template>

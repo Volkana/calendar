@@ -16,7 +16,7 @@ export class EventsService {
   list() {
     return this.http.get<Todo[]>(this.API)
     .pipe(
-      delay(2000),
+      delay(1000),
       tap(console.log)
     );
   }
@@ -36,6 +36,10 @@ export class EventsService {
 
     update(todo) {
       return this.http.put(`${this.API}/${todo.id}`, todo).pipe(take(1));
+    }
+
+    delete(todo) {
+      return this.http.delete(`${this.API}/${todo.id}`).pipe(take(1));
     }
 
   findOne(id) {

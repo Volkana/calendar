@@ -46,9 +46,9 @@ export class EventosFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.eventService.save(this.form.value).subscribe(
-      success => this.popup('success', 'Evento salvo com sucesso'),
+      success => this.popup('success', 'Usuário salvo com sucesso'),
       error => this.popup('error', error),
-      () => this.router.navigate(['events'])
+      () => console.log(this.form.value)
     );
   }
 
