@@ -1,3 +1,4 @@
+import { CreateUserDto } from './../dto/create-user.dto';
 import { User } from './../interfaces/users.interface';
 import {
     Controller,
@@ -13,9 +14,8 @@ import { UserService } from 'src/user/user.service';
 @Controller('user')
 export class UserController {
     constructor( private userService: UserService) {}
-
     @Get()
-    findAll(): User[] | string {
+    findAll(): Promise<User[]> | string {
         return this.userService.findAll();
     }
 
@@ -28,12 +28,19 @@ export class UserController {
             throw new UnauthorizedException();
         }
     }
-
     @Post()
-    login(@Body() user: User): string {
-        return  `Name: ${user.name}
-        Name: ${user.email}
-        Name: ${user.password}`;
+    async signup(@Body() createUserDto: CreateUserDto): Promise<string> {
+        const create = await this.userService.register(createUserDto);
+        return  `Id: ${create.id}
+        Name: ${create.name}
+        Email: ${create.email}
+        Password: ${create.password}`;
+    }
+
+    @Post('login')
+    async login(@Body() user: CreateUserDto): Promise<string> {
+        const login = await this.userService.login(user);
+        return 'login realizado com sucesso';
     }
 
     @Delete()

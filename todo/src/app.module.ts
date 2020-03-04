@@ -12,7 +12,12 @@ import { UserModule } from './user/user.module';
   imports: [
     TodosModule,
     UserModule,
-    MongooseModule.forRoot('mongodb://root:12345@127.0.0.1:27017/'),
+    MongooseModule.forRoot('mongodb://root:12345@127.0.0.1:27017/', {
+      connectionName: 'Todo',
+    }),
+    MongooseModule.forRoot('mongodb://root:12345@127.0.0.1:27017/', {
+      connectionName: 'User',
+    }),
    ],
   controllers: [AppController],
   providers: [AppService],

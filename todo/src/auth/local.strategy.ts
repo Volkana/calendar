@@ -9,7 +9,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     constructor(private authService: AuthService) {
         super();
     }
-
+    /** 
     async validate(email: string, pass: string): Promise<any> {
         const user = await this.authService.validateUser(email, pass);
         if (!user) {
@@ -20,5 +20,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         }
         return user;
     }
+    */
 
 }

@@ -3,6 +3,7 @@ import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {
+    /** 
     constructor( private userService: UserService) {}
 
     async validateUser(email: string, pass: string): Promise<any> { 
@@ -13,4 +14,5 @@ export class AuthService {
         }
         return null;
     }
+    */
 }
